@@ -1,0 +1,1 @@
+export default function Setup(){return <main className="wrap"><article><h1>Telegram Setup</h1><p>Add TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in Vercel.</p><p>Optional: TELEGRAM_WEBHOOK_SECRET and CRON_SECRET.</p><p>Webhook: your-domain/api/telegram/webhook</p><p>Vercel Cron: 12:00 UTC = 4:00 PM UAE.</p><a href="/">Back</a></article></main>}

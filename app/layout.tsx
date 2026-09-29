@@ -1,0 +1,1 @@
+import "./globals.css"; export const metadata={title:"Diabetes Meal Assistant v2"}; export default function RootLayout({children}:{children:React.ReactNode}){return <html><body>{children}</body></html>}
