@@ -1,48 +1,23 @@
-export const plan = [
-{day:"Monday",nutrition:"1760 kcal | 143g protein | 109g carbs | 90g fat | 40g fiber",meals:[
-["Breakfast",["1 egg","Avocado 50g","Cucumber 100g","Tomato 80g","Spinach 50g","Mushrooms 100g"],"Sauté mushrooms and spinach; add egg. Serve with avocado and vegetables."],
-["Mid-morning shake",["Avocado 70g","Low-fat milk 150ml","Almonds 5g","Walnuts 5g","Cashews 5g","Pistachios 5g","Sunflower seeds 5g","Chia 5g"],"Blend with cinnamon and ice. No sugar, honey, dates, banana, juice or syrup."],
-["Lunch",["Chicken breast 180g","Quinoa 90g cooked","Broccoli 150g","Mediterranean salad 150g","Buttermilk 150ml"],"Grill chicken with lemon and herbs. Serve measured quinoa, broccoli and salad."],
-["Evening snack",["Strawberries 150g","Almonds 10g"],"Eat whole fruit."],
-["Dinner",["Salmon 180g","Zucchini 150g","Cauliflower 150g","Spinach 100g","Green salad 150g"],"Bake salmon with lemon and pepper; steam vegetables."]]},
-{day:"Tuesday",nutrition:"1820 kcal | 139g protein | 127g carbs | 94g fat | 44g fiber",meals:[
-["Breakfast",["Plain curd 200g","Chia 5g","Pumpkin seeds 10g","Almonds 10g","Berries 80g"],"Mix curd, chia and cinnamon; top with berries and seeds."],
-["Mid-morning shake",["Avocado 70g","Low-fat milk 150ml","Almonds 5g","Walnuts 5g","Cashews 5g","Pistachios 5g","Sunflower seeds 5g","Chia 5g"],"Blend unsweetened."],
-["Lunch",["Salmon 180g","Lentils 100g cooked","Green beans 150g","Greek salad 150g","Buttermilk 150ml"],"Bake salmon; serve measured lentils, beans and Greek salad."],
-["Evening snack",["Apple 100g","Walnuts 10g"],"Eat whole apple."],
-["Dinner",["White fish 180g","Cabbage 150g","Bok choy 100g","Mushrooms 100g","Cucumber salad 120g"],"Pan-cook fish with garlic and lemon; stir-fry vegetables without sweet sauce."]]},
-{day:"Wednesday",nutrition:"1700 kcal | 138g protein | 112g carbs | 84g fat | 38g fiber",meals:[
-["Breakfast",["Moong dal 40g dry","Spinach 50g","Onion 20g","Tomato 40g","Plain curd 100g"],"Soak and grind moong; add vegetables and cook as chilla. Serve with curd."],
-["Mid-morning shake",["Avocado 70g","Low-fat milk 150ml","Almonds 5g","Walnuts 5g","Cashews 5g","Pistachios 5g","Sunflower seeds 5g","Chia 5g"],"Blend unsweetened."],
-["Lunch",["Chicken breast 180g","Brown/basmati rice 80g cooked","Mexican salad 150g","Broccoli 150g","Buttermilk 150ml"],"Grill chicken with cumin, paprika, garlic and lime; serve measured rice."],
-["Evening snack",["Pear 100g","Almonds 10g"],"Eat whole pear."],
-["Dinner",["Salmon 180g","Broccoli 150g","Zucchini 150g","Spinach 100g","Green salad 150g"],"Bake salmon and steam/sauté vegetables."]]},
-{day:"Thursday",nutrition:"1825 kcal | 142g protein | 129g carbs | 91g fat | 44g fiber",meals:[
-["Breakfast",["Besan 40g","Spinach 50g","Capsicum 50g","Tomato 50g","Onion 20g","Plain curd 100g"],"Mix besan and vegetables; cook chilla; serve with curd."],
-["Mid-morning shake",["Avocado 70g","Low-fat milk 150ml","Almonds 5g","Walnuts 5g","Cashews 5g","Pistachios 5g","Sunflower seeds 5g","Chia 5g"],"Blend unsweetened."],
-["Lunch",["Chicken liver 90g cooked","Chicken breast 80g","Chickpeas 70g cooked","Turkish salad 150g","Broccoli 150g","Buttermilk 150ml"],"Cook liver thoroughly with garlic, ginger, turmeric and cumin; finish with lemon."],
-["Evening snack",["Kiwi 100g","Almonds 10g"],"Eat whole kiwi."],
-["Dinner",["Salmon 180g","Cauliflower 150g","Spinach 100g","Green beans 100g","Green salad 150g"],"Bake salmon; steam vegetables."]]},
-{day:"Friday",nutrition:"1740 kcal | 140g protein | 126g carbs | 83g fat | 40g fiber",meals:[
-["Breakfast",["1 egg","Mushrooms 120g","Spinach 75g","Tomato 60g","Capsicum 50g","Avocado 40g"],"Sauté vegetables; add egg and cook through."],
-["Mid-morning shake",["Avocado 70g","Low-fat milk 150ml","Almonds 5g","Walnuts 5g","Cashews 5g","Pistachios 5g","Sunflower seeds 5g","Chia 5g"],"Blend unsweetened."],
-["Lunch",["Chicken breast 180g","Barley 90g cooked","Lebanese salad 150g","Broccoli 150g","Buttermilk 150ml"],"Grill chicken; serve measured barley, broccoli and salad."],
-["Evening snack",["Apple 100g","Walnuts 10g"],"Eat whole apple."],
-["Dinner",["Salmon 180g","Broccoli 150g","Zucchini 150g","Cabbage salad 150g"],"Bake salmon; steam broccoli; sauté zucchini."]]},
-{day:"Saturday",nutrition:"1620 kcal | 156g protein | 106g carbs | 70g fat | 37g fiber",meals:[
-["Breakfast",["Low-fat paneer 100g","Cucumber 100g","Tomato 80g","Spinach 75g","Mushrooms 100g","Avocado 40g"],"Pan-sear paneer lightly; serve with vegetables and avocado."],
-["Mid-morning shake",["Avocado 70g","Low-fat milk 150ml","Almonds 5g","Walnuts 5g","Cashews 5g","Pistachios 5g","Sunflower seeds 5g","Chia 5g"],"Blend unsweetened."],
-["Lunch",["Chicken breast 180g","Sweet potato 100g cooked","Cabbage 100g","Cucumber 80g","Lettuce 60g"],"Grill chicken; cook measured sweet potato; dress salad with lime, ginger, garlic and 1 tsp sesame oil. No sweet sauce."],
-["Evening snack",["Orange 100g","Almonds 10g"],"Eat whole orange."],
-["Dinner",["Chicken breast 180g","Cauliflower 150g","Spinach 100g","Zucchini 150g","Green salad 150g"],"Grill chicken; steam/sauté vegetables."]]},
-{day:"Sunday",nutrition:"1650 kcal | 143g protein | 105g carbs | 68g fat | 38g fiber",meals:[
-["Breakfast",["1 egg","Avocado 50g","Mushrooms 100g","Spinach 75g","Cucumber 100g","Tomato 80g"],"Sauté mushrooms and spinach; add egg. Serve with avocado and vegetables."],
-["Mid-morning shake",["Avocado 70g","Low-fat milk 150ml","Almonds 5g","Walnuts 5g","Cashews 5g","Pistachios 5g","Sunflower seeds 5g","Chia 5g"],"Blend unsweetened."],
-["Lunch",["Tuna 120g drained","Chicken 100g","Buckwheat 90g cooked","Mediterranean salad 150g","Green vegetables 150g","Buttermilk 150ml"],"Use drained tuna and grilled chicken; serve with measured buckwheat and vegetables."],
-["Evening snack",["Strawberries 150g","Almonds 10g"],"Eat whole fruit."],
-["Dinner",["White fish 180g","Broccoli 150g","Zucchini 150g","Spinach 100g","Green salad 150g"],"Bake fish with lemon and herbs; steam vegetables."]]}
+export type Recipe={id:string;name:string;category:string;time:string;calories:number;protein:number;carbs:number;fat:number;fiber:number;image:string;ingredients:string[];steps:string[];tip?:string};
+
+export const saladRecipes:Recipe[]=[
+{id:'mediterranean',name:'Mediterranean Salad',category:'Salads',time:'10 min',calories:135,protein:3,carbs:12,fat:9,fiber:4,image:'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=900&q=85',ingredients:['Cucumber — 100 g','Tomato — 80 g','Lettuce — 50 g','Red onion — 20 g','Parsley — 10 g','Olives — 15 g','Extra-virgin olive oil — 1 tsp (5 ml)','Lemon juice — 1 tbsp','Black pepper — to taste'],steps:['Wash and dry all vegetables thoroughly.','Dice cucumber and tomato; slice onion thinly.','Tear lettuce into bite-size pieces and chop parsley.','Combine vegetables, parsley and olives in a bowl.','Whisk lemon juice, olive oil and black pepper.','Pour dressing over the salad and toss gently just before serving.'],tip:'Keep the dressing separate if preparing in advance.'},
+{id:'greek',name:'Greek Salad',category:'Salads',time:'10 min',calories:175,protein:6,carbs:11,fat:12,fiber:4,image:'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=900&q=85',ingredients:['Cucumber — 100 g','Tomato — 100 g','Bell pepper — 50 g','Lettuce — 60 g','Red onion — 20 g','Feta — 25–30 g','Olives — 15 g','Olive oil — 1 tsp (5 ml)','Lemon juice — 1 tbsp','Oregano — ¼ tsp'],steps:['Chop cucumber, tomato and bell pepper.','Slice onion and shred lettuce.','Add vegetables, olives and crumbled feta to a bowl.','Mix lemon juice, olive oil and oregano.','Dress immediately before eating and toss lightly.'],tip:'Choose a modest feta portion to keep calories and sodium controlled.'},
+{id:'mexican',name:'Mexican Avocado Salad',category:'Salads',time:'12 min',calories:180,protein:4,carbs:15,fat:12,fiber:6,image:'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85',ingredients:['Lettuce — 80 g','Cucumber — 80 g','Tomato — 80 g','Bell pepper — 60 g','Avocado — 30 g','Red onion — 20 g','Coriander — 10 g','Lime juice — 1 tbsp','Olive oil — 1 tsp','Cumin — ¼ tsp','Chilli powder — a pinch'],steps:['Chop lettuce, cucumber, tomato and bell pepper.','Dice avocado and onion.','Combine vegetables and coriander.','Whisk lime juice, olive oil, cumin and chilli.','Add dressing and toss gently so the avocado stays intact.'],tip:'Do not add sweet chilli sauce or sugar-based dressing.'},
+{id:'turkish',name:'Turkish Shepherd Salad',category:'Salads',time:'10 min',calories:120,protein:3,carbs:12,fat:7,fiber:4,image:'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85',ingredients:['Tomato — 100 g','Cucumber — 100 g','Green pepper — 50 g','Red onion — 20 g','Parsley — 10 g','Lemon juice — 1 tbsp','Olive oil — 1 tsp','Sumac — ½ tsp','Black pepper — to taste'],steps:['Dice tomato and cucumber into small pieces.','Finely chop green pepper, onion and parsley.','Combine everything in a bowl.','Add lemon juice, olive oil, sumac and pepper.','Toss and serve fresh.'],tip:'Use plenty of herbs and lemon for flavor without extra sauces.'},
+{id:'lebanese',name:'Lebanese Herb Salad',category:'Salads',time:'12 min',calories:105,protein:3,carbs:13,fat:5,fiber:5,image:'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85',ingredients:['Lettuce — 60 g','Cucumber — 80 g','Tomato — 80 g','Radish — 50 g','Parsley — 15 g','Mint — 10 g','Lemon juice — 1 tbsp','Sumac — ½ tsp','Olive oil — 1 tsp'],steps:['Wash and dry the herbs and vegetables.','Slice radish and cucumber; dice tomato.','Chop parsley and mint finely.','Combine all ingredients.','Add lemon, sumac and olive oil.','Toss just before serving.'],tip:'Skip pita/croutons if keeping the meal carbohydrate-controlled.'},
+{id:'thai',name:'Thai-Style Crunchy Salad',category:'Salads',time:'15 min',calories:165,protein:5,carbs:14,fat:10,fiber:5,image:'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85',ingredients:['Cabbage — 100 g','Cucumber — 80 g','Lettuce — 60 g','Coriander — 10 g','Mint — 5 g','Crushed peanuts — 10 g','Lime juice — 1 tbsp','Sesame oil — 1 tsp','Fish sauce — 1 tsp','Fresh ginger — ½ tsp','Garlic — 1 small clove','Fresh chilli — optional'],steps:['Finely shred cabbage and slice cucumber.','Tear lettuce and chop herbs.','Mix lime juice, sesame oil, fish sauce, ginger and garlic.','Combine vegetables and herbs.','Add peanuts.','Toss with dressing immediately before serving.'],tip:'Use fish sauce sparingly and avoid sweet chilli sauce.'},
+{id:'tuna',name:'Mediterranean Tuna Salad',category:'Salads',time:'12 min',calories:255,protein:29,carbs:12,fat:11,fiber:4,image:'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=900&q=85',ingredients:['Tuna in water, drained — 120 g','Lettuce — 70 g','Cucumber — 80 g','Tomato — 80 g','Bell pepper — 50 g','Olives — 10 g','Parsley — 10 g','Lemon juice — 1 tbsp','Olive oil — 1 tsp'],steps:['Drain tuna well.','Chop vegetables and parsley.','Add tuna and olives to the vegetables.','Mix lemon juice and olive oil.','Dress and toss gently.'],tip:'Choose tuna packed in water and check sodium if needed.'}
 ];
-export function getDay(d:string){return plan.find(x=>x.day.toLowerCase()===d.toLowerCase())||plan[0]}
-export function nextDay(offset=1){const w=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];const d=new Date(new Date().toLocaleString("en-US",{timeZone:"Asia/Dubai"}));return w[(d.getDay()+offset)%7]}
-export function shopping(d:string){return getDay(d).meals.flatMap((m:any)=>m[1])}
-export function telegram(d:string){return `🛒 ${d.toUpperCase()} INGREDIENTS\n\n${[...new Set(shopping(d))].map(x=>"• "+x).join("\n")}\n\nPlate: ½ non-starchy vegetables + ¼ lean protein + ~¼ quality carbohydrate.\nAvoid added sugar, honey, dates, juice and sweet sauces.`}
+
+export const dailyMeals=[
+['Monday','1 egg + avocado vegetable breakfast','Avocado Nuts Shake','Grilled Chicken + Quinoa + Mediterranean Salad','Strawberries + almonds','Grilled Salmon + vegetables'],
+['Tuesday','Curd + berries + seeds','Avocado Nuts Shake','Salmon + lentils + Greek Salad','Apple + walnuts','White Fish + vegetables'],
+['Wednesday','Moong Dal Chilla + curd','Avocado Nuts Shake','Chicken + rice + Mexican Salad','Pear + almonds','Salmon + vegetables'],
+['Thursday','Besan Chilla + curd','Avocado Nuts Shake','Chicken Liver + chicken + chickpeas + Turkish Salad','Kiwi + almonds','Salmon + vegetables'],
+['Friday','Egg + mushroom spinach breakfast','Avocado Nuts Shake','Chicken + barley + Lebanese Salad','Apple + walnuts','Salmon + cabbage salad'],
+['Saturday','Low-fat paneer + vegetables','Avocado Nuts Shake','Chicken + sweet potato + Thai Salad','Orange + almonds','Chicken + vegetables'],
+['Sunday','Egg + avocado mushroom breakfast','Avocado Nuts Shake','Tuna + chicken + buckwheat + Mediterranean Salad','Strawberries + almonds','White Fish + vegetables']
+].map((x,i)=>({day:x[0],meals:x.slice(1),id:i}));
+
+export function getSaladIngredients(){return saladRecipes.flatMap(r=>r.ingredients);}

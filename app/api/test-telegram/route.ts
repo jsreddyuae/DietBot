@@ -1,1 +1,6 @@
-import {NextResponse} from "next/server";export async function POST(){const t=process.env.TELEGRAM_BOT_TOKEN,c=process.env.TELEGRAM_CHAT_ID;if(!t||!c)return NextResponse.json({ok:false,error:"Telegram env vars missing"},{status:500});const r=await fetch(`https://api.telegram.org/bot${t}/sendMessage`,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({chat_id:c,text:"✅ Diabetes Meal Assistant v2 Telegram test successful."})});return NextResponse.json({ok:r.ok})}
+export async function POST(){
+ const token=process.env.TELEGRAM_BOT_TOKEN; const chat=process.env.TELEGRAM_CHAT_ID;
+ if(!token||!chat) return Response.json({ok:false,error:'Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID'}, {status:400});
+ const r=await fetch(`https://api.telegram.org/bot${token}/sendMessage`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({chat_id:chat,text:'🥗 NutriPlan test message — Telegram is connected successfully.'})});
+ const data=await r.json(); return Response.json(data,{status:r.ok?200:500});
+}
