@@ -1,26 +1,20 @@
-# NutriPlan v3 — Salad Edition
+# NutriPlan v4 — Weekly Plan + Telegram Diagnostics
 
-Vercel-ready Next.js meal assistant. This version adds a dedicated **Salads** menu and detailed salad recipes with exact ingredients, quantities, nutrition and step-by-step preparation.
+Vercel-ready Next.js meal assistant. V4 keeps the Salad Library and adds a weekly-plan view plus a Telegram setup/diagnostic flow.
 
-## Included
-- Today meal timeline
-- Dedicated Salads menu
-- 7 detailed salad recipes: Mediterranean, Greek, Mexican, Turkish, Lebanese, Thai-style and Mediterranean Tuna
-- Search salads
-- Full recipe detail pages
-- Ingredients and preparation steps
-- Nutrition badges
-- Shopping screen
-- Telegram test endpoint
-- Telegram next-day ingredient cron endpoint
-- `CRON_SECRET` protection when configured
-- Asia/Dubai schedule in Vercel cron
+## Telegram setup
+1. Create/open your Telegram bot and send `/start` to it.
+2. In NutriPlan open **Telegram** → **Discover chat ID**.
+3. Copy the returned chat ID into Vercel → Project → Settings → Environment Variables as `TELEGRAM_CHAT_ID`.
+4. Confirm `TELEGRAM_BOT_TOKEN` is correct and add a random `CRON_SECRET`.
+5. Redeploy the project after changing environment variables.
+6. Open **Telegram** → **Check Telegram**. It should show `botValid: true` and `chatValid: true`.
+7. Press **Send test message**. The message should arrive immediately.
 
-## Deploy without local setup
-1. Upload these files to your GitHub `DietBot` repository.
-2. Make sure the root contains `package.json`.
-3. In Vercel, import/redeploy the `main` branch.
-4. Add Production environment variables: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `CRON_SECRET`, `APP_TIMEZONE=Asia/Dubai`.
+## Daily reminder
+`vercel.json` runs the next-day ingredient endpoint at `12:00 UTC`, which is `4:00 PM` in UAE (UTC+4). The route sends the actual next-day ingredient list, not only a generic reminder.
 
-## Important
-This release intentionally uses Next.js **15.5.26 (Maintenance LTS backport)** rather than the vulnerable 15.5.4. On September 30, 2026, Next.js also released 16.3.7 as the current latest overall release. The 15.5.26 line is retained here to minimize compatibility changes for the existing DietBot codebase.
+Vercel sends the configured `CRON_SECRET` as a Bearer authorization header to cron invocations. The endpoint verifies it when `CRON_SECRET` is configured.
+
+## Deploy
+Upload the contents of this folder to the root of the GitHub repository. Add the four environment variables in Vercel. Do not commit real Telegram tokens or secrets.

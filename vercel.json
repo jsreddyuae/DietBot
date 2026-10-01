@@ -1,1 +1,5 @@
-{"crons":[{"path":"/api/cron/next-day-ingredients","schedule":"0 12 * * *"}]}
+{
+  "crons": [
+    {"path":"/api/cron/next-day-ingredients","schedule":"0 12 * * *"}
+  ]
+}
