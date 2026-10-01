@@ -9,7 +9,7 @@ function tomorrowIndex(){
 
 function ingredientMessage(){
   const idx=tomorrowIndex();
-  const plans=[
+  const plans: Array<[string, string[]]>=[
     ['Monday',['Egg — 1','Avocado — 70 g','Chicken breast — 180 g','Quinoa, cooked — 90 g','Broccoli — 150 g','Cucumber — 100 g','Tomato — 80 g','Lettuce — 50 g','Strawberries — 150 g','Salmon — 180 g','Zucchini — 150 g','Spinach — 80 g','Buttermilk — 200 ml']],
     ['Tuesday',['Low-fat curd — 150 g','Mixed berries — 100 g','Salmon — 180 g','Lentils, cooked — 100 g','Greek salad vegetables — 330 g','Feta — 25 g','Buttermilk — 200 ml','Apple — 120 g','Walnuts — 10 g','White fish — 180 g','Cabbage — 120 g','Mushrooms — 100 g']],
     ['Wednesday',['Moong dal, dry — 40 g','Spinach — 40 g','Curd — 100 g','Chicken breast — 180 g','Brown/basmati rice, cooked — 80 g','Mexican salad vegetables — 300 g','Broccoli — 150 g','Pear — 120 g','Almonds — 10 g','Salmon — 180 g','Zucchini — 150 g','Buttermilk — 200 ml']],
