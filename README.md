@@ -1,20 +1,25 @@
-# NutriPlan v4 — Weekly Plan + Telegram Diagnostics
+# NutriPlan — Diabetes Meal Assistant v5 UI
 
-Vercel-ready Next.js meal assistant. V4 keeps the Salad Library and adds a weekly-plan view plus a Telegram setup/diagnostic flow.
+Professional responsive dashboard for the existing NutriPlan Vercel deployment.
 
-## Telegram setup
-1. Create/open your Telegram bot and send `/start` to it.
-2. In NutriPlan open **Telegram** → **Discover chat ID**.
-3. Copy the returned chat ID into Vercel → Project → Settings → Environment Variables as `TELEGRAM_CHAT_ID`.
-4. Confirm `TELEGRAM_BOT_TOKEN` is correct and add a random `CRON_SECRET`.
-5. Redeploy the project after changing environment variables.
-6. Open **Telegram** → **Check Telegram**. It should show `botValid: true` and `chatValid: true`.
-7. Press **Send test message**. The message should arrive immediately.
+## What changed
+- Rebuilt the UI around a premium green neo-glass dashboard inspired by the supplied reference.
+- Added desktop sidebar navigation and a compact Android-first bottom navigation.
+- Added working Today, Weekly Plan, Vegetables, Salads, Recipes, Shopping, Progress and Settings views.
+- Added clickable recipe details with ingredients and preparation steps.
+- Removed Telegram from the visible navigation/UI because Telegram automation is already integrated.
+- Preserved the Telegram API routes and existing Vercel Cron job.
+- Updated the Cron ingredient data to match the current meal plan: salmon only for fish, no tuna/white fish/sweet potato, and chicken liver kept separate from chicken.
+- Kept the Vercel Cron schedule at `0 12 * * *` (12:00 UTC / 4:00 PM UAE).
+- Updated the mobile layout for touch targets, compact cards, readable typography and bottom navigation.
 
-## Daily reminder
-`vercel.json` runs the next-day ingredient endpoint at `12:00 UTC`, which is `4:00 PM` in UAE (UTC+4). The route sends the actual next-day ingredient list, not only a generic reminder.
+## Deployment
+Replace the project files in the existing GitHub repository and let the existing Vercel production deployment build the commit.
 
-Vercel sends the configured `CRON_SECRET` as a Bearer authorization header to cron invocations. The endpoint verifies it when `CRON_SECRET` is configured.
+Keep the existing environment variables:
+- `TELEGRAM_BOT_TOKEN`
+- `TELEGRAM_CHAT_ID`
+- `CRON_SECRET`
+- `APP_TIMEZONE=Asia/Dubai`
 
-## Deploy
-Upload the contents of this folder to the root of the GitHub repository. Add the four environment variables in Vercel. Do not commit real Telegram tokens or secrets.
+Do not create a second Vercel project or a second Cron job.
