@@ -1,19 +1,96 @@
 'use client';
-import {useState} from 'react';
-import {dailyMeals,workoutPlan,getMealRecipe,getShoppingDepartments,Recipe} from '@/lib/mealPlan';
 
-function Nutrition({r}:{r:Recipe}){return <div className="nutrition"><span>🔥 {r.calories} kcal*</span><span>💪 {r.protein}g protein*</span><span>🥔 {r.carbs}g carbs*</span><span>🥑 {r.fat}g fat*</span><span>🌿 {r.fiber}g fibre*</span></div>}
-function RecipeDetail({r,onBack}:{r:Recipe,onBack:()=>void}){return <main className="detailPage"><button className="back" onClick={onBack}>← Back to plan</button><img className="hero" src={r.image} alt={r.name}/><div className="detailHead"><div><div className="eyebrow">{r.category} · {r.time}</div><h1>{r.name}</h1></div></div><Nutrition r={r}/><p className="muted">*Nutrition values are estimates.</p><section><h2>Ingredients</h2><ul className="ingredients">{r.ingredients.map((x,i)=><li key={i}>✓ <span>{x}</span></li>)}</ul></section><section><h2>How to prepare</h2><ol className="steps">{r.steps.map((x,i)=><li key={i}><b>Step {i+1}</b><span>{x}</span></li>)}</ol></section>{r.tip&&<div className="tip"><b>💡 Note</b><p>{r.tip}</p></div>}</main>}
-function WorkoutPanel(){return <section className="panel"><div className="sectionHead"><span className="eyebrow">WEEKLY TRAINING</span><h2>Six-pack & core workouts</h2><p>Follow the weekly schedule and focus on controlled movement, breathing and recovery.</p></div><div className="safetyNote"><b>Diabetes safety:</b> Because you previously reported high glucose and use Forxiga, get clinician guidance before increasing intensity. Hydrate, check glucose as advised and do not exercise when unwell. Nausea, vomiting, abdominal pain or deep/rapid breathing require urgent medical assessment.</div><div className="workoutGrid">{workoutPlan.map(w=><article className="workoutCard" key={w.day}><div className="workoutTop"><span className="eyebrow">{w.day.toUpperCase()}</span><b>{w.duration}</b></div><h3>{w.focus}</h3><ul>{w.moves.map(m=><li key={m[0]}><b>{m[0]} — {m[1]}</b><span>{m[2]}</span></li>)}</ul></article>)}</div><div className="scheduleBox"><h3>Suggested time: 5:30–6:00 PM</h3><p>Start with a 5-minute gentle warm-up and finish with 3–5 minutes of easy movement. If this time does not suit you, choose a consistent time when you feel well and are hydrated.</p><p>Core muscles need recovery; follow the light/recovery days rather than training abs hard every day.</p></div></section>}
-function ShoppingPanel(){const [day,setDay]=useState('Monday');const [result,setResult]=useState('');const [sending,setSending]=useState(false);const groups=getShoppingDepartments(day);const list=groups.map(g=>g.title+'\n'+g.items.map(x=>'• '+x).join('\n')).join('\n\n');async function send(){setSending(true);setResult('');try{const r=await fetch('/api/telegram/shopping-list',{method:'POST'});const d=await r.json();setResult(d.ok?'Shopping list sent to Telegram.':(d.error||'Could not send. Check Telegram settings in Vercel.'));}catch{setResult('Request failed. Check deployment and Telegram settings.')}finally{setSending(false)}}return <section className="panel"><div className="sectionHead"><span className="eyebrow">SHOPPING</span><h2>Ingredients by department</h2><p>Choose a day to view its ingredients grouped by supermarket department. Telegram delivery stays here—no separate Telegram icon or screen.</p></div><div className="dayPills">{dailyMeals.map(d=><button className={day===d.day?'selected':''} key={d.day} onClick={()=>setDay(d.day)}>{d.day.slice(0,3)}</button>)}</div><div className="shoppingDepartments">{groups.map(g=><div className="department" key={g.title}><h3>{g.title}</h3><ul>{g.items.map((x,i)=><li key={i}>{x}</li>)}</ul></div>)}</div><div className="shoppingActions"><button className="primary" onClick={()=>navigator.clipboard?.writeText(list)}>Copy {day}'s shopping list</button><button className="primary telegramSend" onClick={send} disabled={sending}>{sending?'Sending…':'Send tomorrow’s list to Telegram'}</button></div>{result&&<p className="sendResult" role="status">{result}</p>}<p className="muted">Telegram delivery requires TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in Vercel Environment Variables.</p></section>}
-export default function Home(){const [tab,setTab]=useState('today');const [selected,setSelected]=useState<Recipe|null>(null);const [activeDay,setActiveDay]=useState('Monday');const [range,setRange]=useState<'today'|'tomorrow'|'week'>('today');
- const todayName=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Dubai',weekday:'long'}).format(new Date());const todayIndex=Math.max(0,dailyMeals.findIndex(d=>d.day===todayName));const targetIndex=range==='tomorrow'?(todayIndex+1)%7:todayIndex;const shownDay=tab==='day'?(dailyMeals.find(d=>d.day===activeDay)??dailyMeals[targetIndex]):dailyMeals[targetIndex];
- if(selected)return <RecipeDetail r={selected} onBack={()=>setSelected(null)}/>;
- function openDay(day:string){setActiveDay(day);setRange('week');setTab('day')}
- function chooseRange(v:'today'|'tomorrow'|'week'){setRange(v);if(v==='week'){setTab('plan')}else{setActiveDay(dailyMeals[v==='today'?todayIndex:(todayIndex+1)%7].day);setTab('today')}}
- return <main><header className="top"><div><div className="brand">🥗 NutriPlan</div><p>Your daily nutrition and fitness companion</p></div><span className="datePill">{new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Dubai',weekday:'short',month:'short',day:'numeric'}).format(new Date())}</span></header>
- <section className="welcome"><div><span className="eyebrow">{new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Dubai',weekday:'long',month:'long',day:'numeric',year:'numeric'}).format(new Date())}</span><h1>Plan, eat, train. 👋</h1><p>Open any meal to view its ingredients and cooking steps. Keep your weekly plan and core workouts in one place.</p></div><div className="target"><b>Daily focus</b><strong>Meals + movement</strong><small>Measured portions · steady progress</small></div></section>
- <div className="quick" role="group" aria-label="Plan range"><button className={range==='today'?'active':''} onClick={()=>chooseRange('today')}>Today</button><button className={range==='tomorrow'?'active':''} onClick={()=>chooseRange('tomorrow')}>Tomorrow</button><button className={range==='week'?'active':''} onClick={()=>chooseRange('week')}>This week</button></div>
- {tab==='workouts'?<WorkoutPanel/>:tab==='shopping'?<ShoppingPanel/>:tab==='plan'?<section className="panel"><span className="eyebrow">WEEKLY PLAN</span><h2>Choose a day</h2><p className="muted">Select a weekday to open its meals. Each meal opens the full recipe.</p><div className="weekGrid">{dailyMeals.map(d=><button key={d.day} className="dayCard" onClick={()=>openDay(d.day)}><b>{d.day}</b><span>{d.meals[0]}</span><small>Open this day's meals →</small></button>)}</div></section>:<section className="panel"><div className="sectionHead"><span className="eyebrow">{tab==='day'?'SELECTED DAY':'MEAL TIMELINE'}</span><h2>{shownDay.day} — meals</h2><p>Tap any meal to open its complete ingredients and preparation steps.</p></div>{shownDay.meals.map((m,i)=>{const r=getMealRecipe(m,shownDay.day,i);return <button className="meal" key={`${shownDay.day}-${m}`} onClick={()=>setSelected(r)}><img src={r.image} alt=""/><div className="mealText"><span className="eyebrow">{['BREAKFAST','MID-MORNING SHAKE','LUNCH','AFTERNOON SNACK','DINNER'][i]||'MEAL'}</span><h3>{m}</h3><p>{r.time} · {r.ingredients.length} ingredients · Tap for recipe</p></div><span className="arrow">→</span></button>})}<div className="workoutCallout"><div className="emoji">💪</div><div><b>Today's movement</b><p>{workoutPlan.find(w=>w.day===shownDay.day)?.focus} · {workoutPlan.find(w=>w.day===shownDay.day)?.duration}</p></div><button onClick={()=>setTab('workouts')}>View workouts</button></div>{tab==='today'&&<div className="weekLink"><button className="textButton" onClick={()=>chooseRange('week')}>View full weekly plan →</button></div>}</section>}
- <nav aria-label="Main navigation"><button className={['today','day'].includes(tab)?'navActive':''} onClick={()=>{setRange('today');setActiveDay(dailyMeals[todayIndex].day);setTab('today')}}>⌂<span>Today</span></button><button className={tab==='plan'?'navActive':''} onClick={()=>chooseRange('week')}>▦<span>Plan</span></button><button className={tab==='workouts'?'navActive':''} onClick={()=>setTab('workouts')}>▤<span>Workouts</span></button><button className={tab==='shopping'?'navActive':''} onClick={()=>setTab('shopping')}>▣<span>Shopping</span></button></nav></main>
+import { useMemo, useState } from 'react';
+import { dailyMeals, vegetables, saladRecipes, recipes, shoppingGroups, type Recipe } from '@/lib/mealPlan';
+
+type View = 'today' | 'plan' | 'vegetables' | 'salads' | 'recipes' | 'shopping' | 'progress' | 'settings';
+
+const navItems: {id:View; label:string; icon:string; note:string}[] = [
+  {id:'today', label:'Today', icon:'⌂', note:"Today's plan"},
+  {id:'plan', label:'Weekly Plan', icon:'▦', note:'7-day nutrition'},
+  {id:'vegetables', label:'Vegetables', icon:'✦', note:'Indian + global'},
+  {id:'salads', label:'Salads', icon:'◉', note:'7 fresh recipes'},
+  {id:'recipes', label:'Recipes', icon:'◇', note:'Cook with confidence'},
+  {id:'shopping', label:'Shopping', icon:'▣', note:'Auto-generated'},
+  {id:'progress', label:'Progress', icon:'↗', note:'Health tracking'},
+  {id:'settings', label:'Settings', icon:'⚙', note:'Preferences'},
+];
+
+function Nutrition({r}:{r:Recipe}) {
+  return <div className="nutrition">
+    <span>🔥 {r.calories} kcal</span><span>💪 {r.protein}g P</span><span>◌ {r.carbs}g C</span><span>🥑 {r.fat}g F</span><span>🌿 {r.fiber}g fiber</span>
+  </div>;
+}
+
+function MealCard({name, index, onOpen}:{name:string;index:number;onOpen:(r:Recipe)=>void}) {
+  const recipe = recipes[index % recipes.length];
+  const labels = ['BREAKFAST','MID-MORNING','LUNCH','SALAD','EVENING SNACK','DINNER'];
+  const times = ['7:30 AM','11:00 AM','1:00 PM','4:00 PM','6:00 PM','8:00 PM'];
+  return <button className="mealCard" onClick={()=>onOpen(recipe)}>
+    <img src={recipe.image} alt="" />
+    <div className="mealInfo">
+      <div className="mealTop"><span className="mealLabel">{labels[index]}</span><span className="mealTime">{times[index]}</span></div>
+      <h3>{name}</h3>
+      <p>{recipe.ingredients.slice(0,3).join(' · ')}</p>
+      <Nutrition r={recipe}/>
+    </div>
+    <span className="chevron">›</span>
+  </button>;
+}
+
+function RecipeDetail({r,onBack}:{r:Recipe;onBack:()=>void}) {
+  return <main className="detailPage">
+    <button className="ghostBtn" onClick={onBack}>← Back</button>
+    <div className="detailHero"><img src={r.image} alt={r.name}/><div className="detailBadge">Diabetes-friendly recipe</div></div>
+    <div className="detailTitle"><div><span className="eyebrow">{r.category} · {r.time}</span><h1>{r.name}</h1></div><button className="roundBtn">♡</button></div>
+    <Nutrition r={r}/>
+    <div className="detailGrid"><section className="detailCard"><h2>Ingredients</h2><ul className="ingredients">{r.ingredients.map((x,i)=><li key={i}><b>✓</b>{x}</li>)}</ul></section>
+    <section className="detailCard"><h2>How to prepare</h2><ol className="steps">{r.steps.map((x,i)=><li key={i}><b>{String(i+1).padStart(2,'0')}</b><span>{x}</span></li>)}</ol></section></div>
+    {r.tip && <div className="tip"><b>💡 Chef's tip</b><p>{r.tip}</p></div>}
+  </main>;
+}
+
+function PageHeader({eyebrow,title,description}:{eyebrow:string;title:string;description:string}) {
+  return <div className="pageHeader"><div><span className="eyebrow">{eyebrow}</span><h1>{title}</h1><p>{description}</p></div><div className="headerSpark">✦</div></div>;
+}
+
+function Today({onOpen}:{onOpen:(r:Recipe)=>void}) {
+  const dayIndex = new Date().getDay() === 0 ? 6 : new Date().getDay()-1;
+  const plan = dailyMeals[dayIndex];
+  return <>
+    <section className="heroBanner"><div className="heroCopy"><span className="eyebrow light">TODAY · {new Date().toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric'})}</span><h1>Good morning,<br/><strong>Jaya Simha</strong> <span>🌿</span></h1><p>Healthy choices today build a stronger tomorrow. Your plan is balanced around protein, vegetables and controlled carbohydrates.</p><div className="heroActions"><button onClick={()=>onOpen(recipes[0])}>Explore today's meals →</button><span>● Plan ready</span></div></div><div className="heroStats"><div><small>HbA1c</small><strong>11.2%</strong><span>Latest report</span></div><div><small>Fasting glucose</small><strong>272</strong><span>mg/dL</span></div><div><small>Focus</small><strong>Control</strong><span>+ muscle support</span></div></div></section>
+    <div className="sectionTabs"><span className="active">Today</span><span>Tomorrow</span><span>This week</span><span className="statusPill">♥ Diabetes focused</span></div>
+    <section className="contentGrid"><div className="mainColumn"><div className="sectionTitle"><div><span className="eyebrow">MEAL TIMELINE</span><h2>Today's meal plan</h2></div><span className="miniProgress">5 meals · 1,750 kcal target</span></div><div className="mealList">{plan.meals.map((m,i)=><MealCard key={i} name={m} index={i} onOpen={onOpen}/>)}</div></div>
+      <aside className="sideColumn"><ShoppingPreview/><ProgressPreview/></aside></section>
+  </>;
+}
+
+function ShoppingPreview(){return <div className="sideCard"><div className="cardHead"><div><span className="eyebrow">NEXT DAY</span><h3>Shopping essentials</h3></div><span className="tinyIcon">✓</span></div><p className="muted">Ingredients are prepared automatically for tomorrow.</p><ul className="checkList">{['Avocado — 70 g','Unsweetened soy milk — 200 ml','Salmon — 180 g','Barley — 90 g cooked','Bhendi — 150 g','Spinach — 100 g'].map(x=><li key={x}>✓ <span>{x}</span></li>)}</ul><button className="greenBtn">View shopping list →</button></div>}
+function ProgressPreview(){return <div className="sideCard"><div className="cardHead"><div><span className="eyebrow">THIS WEEK</span><h3>Progress snapshot</h3></div><span className="tinyIcon">↗</span></div><div className="metricRow"><div><b>5/6</b><span>Meals</span></div><div><b>118g</b><span>Protein</span></div><div><b>28g</b><span>Fiber</span></div></div>{[['Meals completed',78],['Protein target',92],['Water',83],['Fiber',80]].map(([x,v])=><div className="barItem" key={String(x)}><div><span>{x}</span><b>{v}%</b></div><i><em style={{width:`${v}%`}}/></i></div>)}</div>}
+
+function WeeklyPlan({setView}:{setView:(v:View)=>void}){return <section><PageHeader eyebrow="PLAN YOUR WEEK" title="A complete 7-day rhythm" description="Simple meals, familiar ingredients and controlled carbohydrate portions—without repeating the same breakfast every day."/><div className="weekCards">{dailyMeals.map((d,i)=><button className="weekCard" key={d.day} onClick={()=>setView('today')}><div className="dayNum">{String(i+1).padStart(2,'0')}</div><div><span>{d.day}</span><h3>{d.meals[0]}</h3><p>{d.meals[2]}</p><small>{d.meals[4]}</small></div><b>›</b></button>)}</div></section>}
+
+function Vegetables({setView}:{setView:(v:View)=>void}){return <section><PageHeader eyebrow="VEGETABLE LIBRARY" title="Eat the rainbow" description="Indian favourites and international vegetables chosen for variety, texture and everyday cooking."/><div className="categoryPills"><span className="active">All</span><span>Indian</span><span>Leafy greens</span><span>Other</span></div><div className="vegGrid">{vegetables.map(v=><button className="vegCard" key={v.name} onClick={()=>setView('recipes')}><img src={v.image} alt=""/><div><b>{v.name}</b><span>{v.local}</span></div></button>)}</div></section>}
+
+function RecipeLibrary({setSelected}:{setSelected:(r:Recipe)=>void}){return <section><PageHeader eyebrow="RECIPE COLLECTION" title="Cook something you will love" description="Detailed ingredients, exact quantities and simple preparation steps for your weekly plan."/><div className="recipeGrid">{recipes.map(r=><button className="libraryCard" key={r.id} onClick={()=>setSelected(r)}><img src={r.image} alt=""/><div><span className="eyebrow">{r.category} · {r.time}</span><h3>{r.name}</h3><Nutrition r={r}/><span className="viewLink">View recipe →</span></div></button>)}</div></section>}
+
+function Salads({setSelected}:{setSelected:(r:Recipe)=>void}){return <section><PageHeader eyebrow="FRESH SALAD BAR" title="7 salads, zero boredom" description="International-style salads with no added sugar or sweet dressings. Tap any card for the full recipe."/><div className="recipeGrid">{saladRecipes.map(r=><button className="libraryCard" key={r.id} onClick={()=>setSelected(r)}><img src={r.image} alt=""/><div><span className="eyebrow">SALAD · {r.time}</span><h3>{r.name}</h3><Nutrition r={r}/><span className="viewLink">View full recipe →</span></div></button>)}</div></section>}
+
+function Shopping(){return <section><PageHeader eyebrow="SMART SHOPPING" title="Your weekly basket" description="A clean, category-based list built from the current 7-day meal plan."/><div className="shoppingGrid">{shoppingGroups.map(g=><div className="shopCard" key={g.title}><div className="shopIcon">{g.icon}</div><div><h3>{g.title}</h3><ul>{g.items.map(x=><li key={x}><span>□</span>{x}</li>)}</ul></div></div>)}</div></section>}
+
+function Progress(){return <section><PageHeader eyebrow="HEALTH DASHBOARD" title="Progress you can see" description="Use this space to track meals, protein, fiber, water and glucose trends. Connect your own readings as the app evolves."/><div className="progressHero"><div><span className="eyebrow light">CURRENT FOCUS</span><h2>Build consistency first.</h2><p>Small daily wins are easier to maintain than extreme changes.</p></div><div className="ring"><strong>78%</strong><span>weekly goal</span></div></div><div className="statsGrid">{[['Meals','5 / 6','completed'],['Protein','118 g','of 120 g'],['Fiber','28 g','of 35 g'],['Water','2.5 L','of 3 L'],['Weight','68.5 kg','current'],['Glucose','—','add reading']].map(x=><div className="statCard" key={x[0]}><span>{x[0]}</span><b>{x[1]}</b><small>{x[2]}</small></div>)}</div></section>}
+
+function Settings(){return <section><PageHeader eyebrow="PREFERENCES" title="Make NutriPlan yours" description="Your Telegram automation remains active in the background. The dashboard no longer needs a separate Telegram screen."/><div className="settingsGrid"><div className="settingCard"><span>👤</span><div><b>Profile</b><p>Personal details, goals and meal preferences.</p></div><button>›</button></div><div className="settingCard"><span>🎯</span><div><b>Nutrition targets</b><p>Calories, protein, carbohydrate and fiber targets.</p></div><button>›</button></div><div className="settingCard"><span>🔔</span><div><b>Reminders</b><p>Meal, water and shopping reminder preferences.</p></div><button>›</button></div><div className="settingCard"><span>◐</span><div><b>Appearance</b><p>Light, dark and system display options.</p></div><button>›</button></div></div><div className="automationNote"><b>✓ Telegram automation is active</b><p>Your scheduled next-day ingredient notification continues through Vercel Cron at 4:00 PM UAE time. No Telegram setup is needed here.</p></div></section>}
+
+export default function Home(){
+  const [view,setView]=useState<View>('today');
+  const [selected,setSelected]=useState<Recipe|null>(null);
+  const selectedOrBack=useMemo(()=>selected,[selected]);
+  if(selectedOrBack) return <RecipeDetail r={selectedOrBack} onBack={()=>setSelected(null)}/>;
+  const render=()=>{switch(view){case 'plan':return <WeeklyPlan setView={setView}/>;case 'vegetables':return <Vegetables setView={setView}/>;case 'salads':return <Salads setSelected={setSelected}/>;case 'recipes':return <RecipeLibrary setSelected={setSelected}/>;case 'shopping':return <Shopping/>;case 'progress':return <Progress/>;case 'settings':return <Settings/>;default:return <Today onOpen={setSelected}/>;}};
+  return <main className="appShell">
+    <aside className="sidebar"><div className="brandBlock"><div className="logoMark">✦</div><div><b>Nutri<span>Plan</span></b><small>Diabetes Meal Assistant</small></div></div><div className="profileMini"><div className="avatar">JS</div><div><b>Jaya Simha</b><span>Personal meal plan</span></div><span>›</span></div><div className="sideNav">{navItems.map(n=><button key={n.id} className={view===n.id?'active':''} onClick={()=>setView(n.id)}><i>{n.icon}</i><div><b>{n.label}</b><span>{n.note}</span></div><em>›</em></button>)}</div><div className="sideQuote">Better food.<br/><strong>Better glucose.</strong><br/>More energy. ♥</div><div className="sidebarFoot">NutriPlan v4 · Your daily companion</div></aside>
+    <div className="workspace"><header className="mobileTop"><button className="mobileLogo" onClick={()=>setView('today')}>✦ <b>Nutri<span>Plan</span></b></button><button className="roundBtn">☼</button></header><div className="desktopTop"><div><span className="eyebrow">NUTRIPLAN · PERSONAL DASHBOARD</span><h2>Healthy meals. Better routines. More energy.</h2></div><div className="topActions"><span>● Plan synced</span><button>JS</button></div></div>{render()}</div>
+    <nav className="bottomNav">{navItems.slice(0,5).map(n=><button key={n.id} className={view===n.id?'active':''} onClick={()=>setView(n.id)}><i>{n.icon}</i><span>{n.label==='Weekly Plan'?'Plan':n.label}</span></button>)}</nav>
+  </main>;
 }
