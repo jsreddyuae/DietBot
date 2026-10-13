@@ -54,3 +54,11 @@ export const shoppingGroups=[
 {title:'Nuts & seeds',icon:'🥜',items:['Almonds — 100 g','Walnuts — 60 g','Cashews — 40 g','Pistachios — 40 g','Sunflower seeds — 40 g','Chia — 40 g']},
 {title:'Grains & pantry',icon:'🌾',items:['Quinoa — 90 g cooked portions','Barley — 180 g cooked portions','Brown/basmati rice — controlled portions','Whole green moong','Besan / gram flour','Olive oil, lemon, herbs and spices']}
 ];
+// Compatibility helper for the Telegram shopping-list API
+export function getShoppingDepartments(_day?: string) {
+  return shoppingGroups.map((group) => ({
+    title: group.title,
+    icon: group.icon,
+    items: [...group.items],
+  }));
+}
