@@ -15,7 +15,8 @@ export const saladRecipes:Recipe[]=[
 {id:'mexican',name:'Mexican Avocado Salad',category:'Salads',time:'12 min',calories:180,protein:4,carbs:15,fat:12,fiber:6,image:'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85',ingredients:['Lettuce — 80 g','Cucumber — 80 g','Tomato — 80 g','Bell pepper — 60 g','Avocado — 30 g','Red onion — 20 g','Coriander — 10 g','Lime juice — 1 tbsp','Olive oil — 1 tsp','Cumin and chilli'],steps:['Chop the vegetables.','Dice avocado and onion.','Combine with coriander.','Whisk lime, oil, cumin and chilli.','Toss gently.'],tip:'No sweet chilli sauce or added sugar.'},
 {id:'turkish',name:'Turkish Shepherd Salad',category:'Salads',time:'10 min',calories:120,protein:3,carbs:12,fat:7,fiber:4,image:'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85',ingredients:['Tomato — 100 g','Cucumber — 100 g','Green pepper — 50 g','Red onion — 20 g','Parsley — 10 g','Lemon — 1 tbsp','Olive oil — 1 tsp','Sumac'],steps:['Dice tomato and cucumber.','Chop pepper, onion and parsley.','Combine all vegetables.','Add lemon, oil and sumac.','Toss and serve fresh.']},
 {id:'lebanese',name:'Lebanese Herb Salad',category:'Salads',time:'12 min',calories:105,protein:3,carbs:13,fat:5,fiber:5,image:'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85',ingredients:['Lettuce — 60 g','Cucumber — 80 g','Tomato — 80 g','Radish — 50 g','Parsley — 15 g','Mint — 10 g','Lemon — 1 tbsp','Sumac','Olive oil — 1 tsp'],steps:['Wash and dry herbs and vegetables.','Slice radish and cucumber; dice tomato.','Chop herbs finely.','Combine all ingredients.','Add lemon, sumac and oil.','Toss just before serving.'],tip:'Skip pita or croutons when keeping the meal carbohydrate-controlled.'},
-{id:'thai',name:'Thai-Style Crunchy Salad',category:'Salads',time:'15 min',calories:165,protein:5,carbs:14,fat:10,fiber:5,image:'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85',ingredients:['Cabbage — 100 g','Cucumber — 80 g','Lettuce — 60 g','Coriander — 10 g','Mint — 5 g','Crushed peanuts — 10 g','Lime juice — 1 tbsp','Sesame oil — 1 tsp','Ginger and garlic','Fresh chilli — optional'],steps:['Shred cabbage and slice cucumber.','Tear lettuce and chop herbs.','Mix lime, sesame oil, ginger and garlic.','Combine vegetables and herbs.','Add peanuts and toss.'],tip:'Avoid sweet chilli sauce and added sugar.'}
+{id:'thai',name:'Thai-Style Crunchy Salad',category:'Salads',time:'15 min',calories:165,protein:5,carbs:14,fat:10,fiber:5,image:'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85',ingredients:['Cabbage — 100 g','Cucumber — 80 g','Lettuce — 60 g','Coriander — 10 g','Mint — 5 g','Crushed peanuts — 10 g','Lime juice — 1 tbsp','Sesame oil — 1 tsp','Ginger and garlic','Fresh chilli — optional'],steps:['Shred cabbage and slice cucumber.','Tear lettuce and chop herbs.','Mix lime, sesame oil, ginger and garlic.','Combine vegetables and herbs.','Add peanuts and toss.'],tip:'Avoid sweet chilli sauce and added sugar.'},
+{id:'broccoli-lemon-garlic',name:'Lemon-Garlic Broccoli Salad',category:'Salads',time:'12 min',calories:125,protein:5,carbs:11,fat:7,fiber:5,image:'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85',ingredients:['Broccoli florets — 150 g','Cherry tomatoes — 60 g','Red onion — 15 g','Almonds, chopped — 1 tbsp','Olive oil — 1 tsp','Lemon juice — 1 tbsp','Garlic — ½ small clove','Black pepper and a pinch of salt'],steps:['Steam broccoli until just tender, then cool.','Halve the tomatoes and finely slice the onion.','Whisk lemon juice, olive oil, garlic and pepper.','Toss broccoli, tomatoes and onion with dressing.','Top with chopped almonds and serve.'],tip:'Keep broccoli slightly crisp; avoid sugary bottled dressings.'}
 ];
 
 export const vegetables=[
@@ -38,13 +39,13 @@ export const vegetables=[
 ];
 
 export const dailyMeals=[
-{day:'Monday',meals:['Egg + avocado vegetable breakfast','Avocado Nut & Seed Shake','Grilled Chicken + Quinoa + Mediterranean Salad','Strawberries + almonds','Grilled Salmon + vegetables']},
-{day:'Tuesday',meals:['Curd + berries + seeds','Avocado Nut & Seed Shake','Salmon + Green Moong + Greek Salad','Apple + walnuts','Salmon + cabbage + cucumber']},
-{day:'Wednesday',meals:['Moong Dal Chilla + curd','Avocado Nut & Seed Shake','Chicken + rice + Mexican Salad','Pear + almonds','Grilled Salmon + vegetables']},
-{day:'Thursday',meals:['Besan Chilla + curd','Avocado Nut & Seed Shake','Chicken Liver + Karela + Green Moong','Kiwi + almonds','Grilled Salmon + vegetables']},
-{day:'Friday',meals:['Egg + mushroom spinach breakfast','Avocado Nut & Seed Shake','Chicken + Barley + Lebanese Salad','Apple + walnuts','Grilled Salmon + cabbage salad']},
-{day:'Saturday',meals:['Low-fat paneer + vegetables','Avocado Nut & Seed Shake','Chicken + Barley + Thai Salad','Orange + almonds','Grilled Salmon + vegetables']},
-{day:'Sunday',meals:['Egg + avocado mushroom breakfast','Avocado Nut & Seed Shake','Salmon + Buckwheat + Mediterranean Salad','Strawberries + almonds','Grilled Salmon + vegetables']}
+{day:'Monday',meals:['Besan chilla (2 small) + mint chutney','Avocado-nut shake (no added sugar)','Chicken breast + kakarakai + quinoa + Mediterranean salad','Guava + plain curd + chia + kalonji','Salmon + kakarakai + barley + Mediterranean salad']},
+{day:'Tuesday',meals:['2-egg omelet with tomato and spinach + 1 slice whole-grain bread','Avocado-nut shake (no added sugar)','Chicken breast + bhindi + brown rice + Greek salad','Small apple + plain curd + chia + kalonji','Salmon + bhindi + quinoa + Greek salad']},
+{day:'Wednesday',meals:['Whole-moong dal chilla (2 small) + coriander chutney','Avocado-nut shake (no added sugar)','Chicken breast + sorakai + quinoa + Mexican avocado salad','Small orange + plain curd + chia + kalonji','Salmon + sorakai + barley + Mexican avocado salad']},
+{day:'Thursday',meals:['Plain unsweetened curd + berries + nuts + chia','Avocado-nut shake (no added sugar)','Chicken breast + beans + brown rice + Turkish shepherd salad','Small pear + plain curd + chia + kalonji','Salmon + beans + quinoa + Turkish shepherd salad']},
+{day:'Friday',meals:['Besan chilla (2 small) + coriander chutney','Avocado-nut shake (no added sugar)','Chicken breast + brinjal + barley + Lebanese herb salad','Small kiwi + plain curd + chia + kalonji','Salmon + brinjal + brown rice + Lebanese herb salad']},
+{day:'Saturday',meals:['1 boiled egg + whole-grain bread + small avocado portion','Avocado-nut shake (no added sugar)','Chicken breast + cauliflower + quinoa + Thai-style crunchy salad','Small apple + plain curd + chia + kalonji','Salmon + cauliflower + barley + Thai-style crunchy salad']},
+{day:'Sunday',meals:['Whole-moong dal chilla (2 small) + mint chutney','Avocado-nut shake (no added sugar)','Chicken breast + thotakura + brown rice + lemon-garlic broccoli salad','Small guava + plain curd + chia + kalonji','Salmon + thotakura + quinoa + lemon-garlic broccoli salad']}
 ];
 
 export const shoppingGroups=[
@@ -54,11 +55,3 @@ export const shoppingGroups=[
 {title:'Nuts & seeds',icon:'🥜',items:['Almonds — 100 g','Walnuts — 60 g','Cashews — 40 g','Pistachios — 40 g','Sunflower seeds — 40 g','Chia — 40 g']},
 {title:'Grains & pantry',icon:'🌾',items:['Quinoa — 90 g cooked portions','Barley — 180 g cooked portions','Brown/basmati rice — controlled portions','Whole green moong','Besan / gram flour','Olive oil, lemon, herbs and spices']}
 ];
-// Compatibility helper for the Telegram shopping-list API
-export function getShoppingDepartments(_day?: string) {
-  return shoppingGroups.map((group) => ({
-    title: group.title,
-    icon: group.icon,
-    items: [...group.items],
-  }));
-}
